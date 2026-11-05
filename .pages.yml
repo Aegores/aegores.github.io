@@ -1,0 +1,46 @@
+media:
+  input: source/images
+  output: /images
+  extensions: [jpg, jpeg, png, webp, gif]
+
+content:
+  - name: posts
+    label: 博客文章
+    type: collection
+    path: source/_posts
+    format: yaml-frontmatter
+    subfolders: true
+    filename:
+      template: "{primary}.md"
+      field: create
+    view:
+      fields: [title, date, tags]
+      primary: title
+      sort: [date, title]
+      search: [title, body, tags]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: date
+        label: 发布日期
+        type: date
+        required: true
+        options:
+          time: true
+          format: "yyyy-MM-dd HH:mm:ss"
+      - name: tags
+        label: 标签
+        type: string
+        list: true
+      - name: categories
+        label: 分类
+        type: string
+        list: true
+      - name: body
+        label: 正文
+        type: rich-text
